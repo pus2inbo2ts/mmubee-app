@@ -1,0 +1,42 @@
+<ion-view view-title="MMLS" id="mmls">
+  <ion-content>
+
+    <ion-refresher pulling-text="Pull to refresh..."  on-refresh="refresh()"> </ion-refresher>
+    
+    <ion-list>
+			<div ng-repeat="d in data" class="card" >
+
+					<span ng-if="d.activation">
+						<a class="item hashChanges" href="#/tab/mmlsDetail/{{$index}}" style="border-top: 2px solid {{d.color}}">
+						<div class="left">
+							<span class="mmlsBadge" id="{{d.code}}"></span>
+							<div class="code" flaticon="{{d.color}}" code="{{d.code}}"><span ng-bind="d.code" style="position:relative; z-index:10000;"></span></div>
+						</div>
+
+						<div class="right">
+						  <div class="name" ng-bind="d.name"></div>
+						  <div class="pointer"><span ng-bind="d.class"></span> <i class="icon ion-ios7-arrow-right"></i></div>
+					  </div>
+					  </a>
+					</span>
+
+
+
+					<span ng-if="!d.activation">
+						<a class="item hashChanges" href="#/tab/centerDetail?href=activation.php&name=Upgrade+account+to+unlock" style="border-top: 2px solid {{d.color}}">
+						<div class="left">
+							<div class="code"  flaticon="{{d.color}}" code="{{d.code}}" ng-bind="d.code"></div>
+						</div>
+
+						<div class="right">
+						  <div class="name" ng-bind="d.name"></div>
+						  <div class="pointer">Locked <i class="icon ion-locked"></i></div>
+					  </div>
+					  </a>
+					</span>
+
+			</div>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view view-title="Notifications"  hide-back-button="true" id="notice">
+
+<!--
+  <ion-nav-bar class="bar-positive nav-title-slide-ios7 noborder">
+    <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back" on-tap="refreshChain();">
+      Back
+    </ion-nav-back-button>
+  </ion-nav-bar>
+-->
+
+  <ion-nav-buttons side="left">
+		<button class="button back-button buttons button-icon icon  ion-ios7-arrow-back header-item" on-tap="refreshChain()">Back</button>
+  </ion-nav-buttons>
+
+  <ion-content id="notification">
+
+		<ion-list>
+
+	    <a class="item item-thumbnail-left" href="#/tab/chainDetail/{{d.chain}}" ng-repeat="d in data">
+	      <img ng-src="https://graph.facebook.com/{{d.fbid}}/picture?width=100&height=100"/>
+	      <h2 ng-bind="d.name"></h2>
+
+	      <p class="content"><span ng-bind="d.content"></span> <i class="icon ion-ios7-heart like" ng-show="!d.content"></i></p>
+	      <p class="date" moment="{{d.date}}"></p>
+	    </a>
+
+		</ion-list>
+
+  </ion-content>
+</ion-view>

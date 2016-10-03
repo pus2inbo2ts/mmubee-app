@@ -1,0 +1,17 @@
+<ion-view view-title="MMU NEWS" id="newsDetail">
+
+  <ion-content>
+  
+    <div class="list card">
+      <div class="item item-avatar" datadetectors="off"  x-apple-data-detectors="false">
+        <h2 datadetectors="off"  x-apple-data-detectors="false" ng-bind="data.title"></h2>
+        <div class="mate" ng-bind="data.mate"></div>
+      </div>
+
+      <div class="item-body">
+        <div ng-bind-html="data.content"></div>
+        <br />
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

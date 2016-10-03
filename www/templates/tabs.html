@@ -1,0 +1,31 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+
+  <!-- CIRCLE Tab -->
+  <ion-tab title="CHAIN" icon-off="ion-ios7-infinite-outline" icon-on="ion-ios7-infinite" href="#/tab/plane" badge="badges.plane"  badge-style="badge-assertive" ng-click="clickBadge('plane')" class="chainB"> 
+    <ion-nav-view name="plane"></ion-nav-view>
+  </ion-tab>
+
+  <!-- MMLS Tab -->
+  <ion-tab title="MMLS" icon-off="ion-ios7-bookmarks-outline" icon-on="ion-ios7-bookmarks" href="#/tab/mmls" badge="badges.mmls"  badge-style="badge-assertive" ng-click="clickBadge('mmls')"  class="mmlsB" >
+    <ion-nav-view name="mmls"></ion-nav-view>
+  </ion-tab>
+
+
+  <!-- CENTER Tab -->
+  <ion-tab title="CENTER" icon-off="ion-ios7-home-outline" icon-on="ion-ios7-home" href="#/tab/center" badge="badges.center"  badge-style="badge-assertive"  ng-click="clickBadge('center')" class="centerB">
+    <ion-nav-view name="center"></ion-nav-view>
+  </ion-tab>
+
+  <!-- NEWS Tab -->
+  <ion-tab title="NEWS" icon-off="ion-ios7-paper-outline" icon-on="ion-ios7-paper" href="#/tab/news" badge="badges.news"  badge-style="badge-assertive" ng-click="clickBadge('news')" class="newsB">
+    <ion-nav-view name="news"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>

@@ -1,0 +1,99 @@
+<ion-view title="CHAIN" id="paperplane">
+ 
+  <ion-nav-buttons side="right">
+    <a href="#/tab/written"><button class="button written"><i class="ion-edit"></i></button></a>
+  </ion-nav-buttons>
+
+
+<ion-content id="paperplane">
+  <ion-refresher pulling-text="Pull to refresh..."  on-refresh="refresh()"> </ion-refresher>
+
+
+  <div class="profile">
+
+    <div class="cover" ng-style="{'background':'url('+cover+') no-repeat', 'background-position':'center center', 'height':'315px', 'width':'100%', 'background-size':'cover'}" ></div>
+    <img ng-src="https://graph.facebook.com/{{profile.id}}/picture?width=180&height=180" class="picture" on-tap="mine(profile.id, 'Mine', sid, cover);" />
+  </div>
+
+
+  <a ng-if="noticeNum != 0" href="#/tab/notice">
+    <div class="notice">
+      <img ng-src="{{noticeFBID}}" ng-style="{'height':'25px', 'width':'25px'}"/>
+      <span>{{noticeNum}} New Messages</span>
+    </div>
+  </a>
+
+  <!--<span class="ion-loading-d loadingBar"></span>-->
+
+  <div class="feed">
+
+    <div class="plane" ng-repeat="d in data track by $index">
+ 
+      <img ng-src="https://graph.facebook.com/{{d.fbid}}/picture?width=80&height=80" class="picture" on-tap="facebook(d.fbid, d.name, d.sid, d.cover)" />
+      
+      <div class="right">
+        <a class="name" on-tap="facebook(d.fbid, d.name, d.sid, d.cover)"><span ng-bind="d.name"></span></a>
+
+        <!--<a class="code" style="color:rgb(52, 152, 219);" font-color="{{d.to}}"><i class="ion-ios7-paperplane"></i> {{d.to}}</a>-->
+
+        <a class="code" ng-class="{planeWithCode: d.to != 'CYBERJAYA' && d.to != 'MELAKA'}"><i class="ion-ios7-paperplane"></i> <span ng-bind="d.to"></span></a>
+
+        <div class="content">
+
+          <span ng-bind="d.content" ></span>
+
+          <div class="photos" ng-if=" d.photo != 0">
+            <div ng-repeat="p in d.photo track by $index">
+              <div class="thumbanil" ng-style="{'background':'url('+server+'thumbanil/'+p+'.jpg) no-repeat', 'background-position':'center center', 'height':'60px', 'width':'60px', 'background-size':'cover'}" on-tap="openGallery(d.photo, $index)" ng-show="p" ></div>
+              <!--<img ng-src="{{server}}thumbanil/{{p}}.jpg" ng-show="p" on-tap="openGallery(d.photo, $index)">-->
+            </div>
+          </div>
+
+        </div>
+        <div class="mate">
+          <span class="time" moment="{{d.date}}"></span>
+          <span class="delete" ng-show="d.sid == sid" on-tap="deletePost(d.id, sid, $index)">Delete</span>
+          <span class="right">
+
+          <span ng-if="!d.iLike">
+            <a ng-class="{'icon ion-ios7-heart like': liked, 'icon ion-ios7-heart-outline like': !liked}; " on-tap="liked = !liked; like(d.id, $index);"></a> 
+          </span>
+          <span ng-if="d.iLike">
+            <a class="icon ion-ios7-heart like"></a> 
+          </span>
+
+            <a on-tap="comment(d.name, d.content, d.id, $index);" class="icon ion-chatbubble-working comment"></a>
+          </span>
+        </div>
+        <div class="com" ng-show="d.like || d.comment">
+          <div class="like"><i class="icon ion-ios7-heart" ng-show="d.like"></i><span ng-bind="d.like"></span></div>
+
+          <div class="comment">
+            <div ng-repeat="c in d.comment" class="row" on-tap="deleteComment(c.cid, d.id, $parent.$index, c.sid, c.fbid, c.name, c.sid, c.cover, c.content);">
+
+              <span ng-if="!c.commentID">
+                <span ng-bind="c.name" class="name"></span>
+              </span>
+
+              <span ng-if="c.commentID">
+                 <span ng-bind="c.name" class="name"></span> <span style="color: #97aad0;"> <i class="icon ion-forward"></i> </span>  <span replies="{{c.commentID}}" class="name"></span>
+              </span>
+
+              <span ng-bind="c.content" class="text"></span>
+            </div>
+          </div>
+
+  
+        </div>
+
+      </div>
+    </div>
+ 
+
+  </div>
+  
+  <ion-infinite-scroll ng-if="nomore" icon="ion-loading-c" on-infinite="loadMore()"></ion-infinite-scroll>
+
+  </ion-content>
+
+</ion-view>

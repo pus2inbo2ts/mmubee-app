@@ -1,0 +1,39 @@
+<ion-view view-title="Written" id="written">
+  <ion-content class="padding">
+  <form ng-submit="flying();">
+		<div class="list">
+		  <div class="item item-input item-floating-label content">
+		    <span class="input-label">What's on your mind?</span>
+		    <textarea placeholder="What's on your mind?" rows="4" name="textarea" class="textarea"></textarea>
+
+	 			<span class="photos">
+
+<!-- 	 				<div class="thumbanil" style="background-image: url('img/tmp.jpg');" data="img/tmp.jpg"></div>
+	 				<div class="thumbanil" style="background-image: url('img/tmp.jpg');" data="img/tmp.jpg"></div>
+	 				<div class="thumbanil" style="background-image: url('img/tmp.jpg');" data="img/tmp.jpg"></div>
+	 				<div class="thumbanil" style="background-image: url('img/tmp.jpg');" data="img/tmp.jpg"></div>
+ -->
+		    </span>
+		    <div class="photos-btn"><i class="ion-ios7-camera-outline" on-tap="photos()"></i></div>
+		  </div>
+
+			<label class="item item-input item-select">
+			  <div class="input-label">
+			    Post to
+			  </div>
+			  <select class="to">
+					<option value="{{campus}}" ng-bind="campus"></option>
+			  	<option ng-repeat="d in data" value="{{d.code}}" ng-bind="d.name"></option>
+			  </select>
+			</label>
+
+		</div>
+
+
+		<button class="button button-block button-outline button-positive" type="submit">
+		  POST
+		</button>
+
+	</form>
+  </ion-content>
+</ion-view>

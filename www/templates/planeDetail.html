@@ -1,0 +1,81 @@
+<ion-view title="Detail" id="paperplane">
+
+  <ion-content>
+
+    <span class="ion-loading-d loadingBar" style="display:inline-block;"></span>
+
+    <div class="feed" ng-show="data">
+
+      <div class="plane">
+   
+        <img ng-src="https://graph.facebook.com/{{data.fbid}}/picture?width=80&height=80" class="picture"  on-tap="facebook(data.fbid, data.name, data.sid, data.cover)" />
+        
+        <div class="right">
+          <a class="name" on-tap="facebook(data.fbid, data.name, data.sid, data.cover)" ><span ng-bind="data.name"></span></a>
+
+          <a class="code" ng-class="{planeWithCode: data.to != 'CYBERJAYA' && data.to != 'MELAKA'}"><i class="ion-ios7-paperplane"></i> <span ng-bind="data.to"></span></a>
+
+          <div class="content">
+            <span ng-bind="data.content"></span>
+
+
+            <div class="photos" ng-if=" data.photo != 0">
+              <div ng-repeat="p in data.photo track by $index">
+                <div class="thumbanil" ng-style="{'background':'url('+server+'thumbanil/'+p+'.jpg) no-repeat', 'background-position':'center center', 'height':'60px', 'width':'60px', 'background-size':'cover'}" on-tap="openGallery(data.photo, $index)" ng-show="p" ></div>
+              </div>
+            </div>
+
+          </div>
+          <div class="mate">
+            <span class="time" moment="{{data.date}}"></span>
+            <span class="delete" ng-show="data.sid == sid" on-tap="deletePost(data.id, sid)">Delete</span>
+            <span class="right">
+
+            <span ng-if="!data.iLike">
+              <a ng-class="{'icon ion-ios7-heart like': liked, 'icon ion-ios7-heart-outline like': !liked}; " on-tap="liked = !liked; like(data.id);"></a> 
+            </span>
+            <span ng-if="data.iLike">
+              <a  class="icon ion-ios7-heart like"></a> 
+            </span>
+
+              <a on-tap="comment(data.name, data.content, data.id);" class="icon ion-chatbubble-working comment"></a>
+            </span>
+          </div>
+          <div class="com" ng-show="data.like || data.comment">
+            <div class="like"><i class="icon ion-ios7-heart" ng-show="data.like"></i><span ng-bind="data.like"></span></div>
+
+
+            <div class="comment">
+              <div ng-repeat="c in data.comment" class="row" on-tap="deleteComment(c.cid, data.id, $parent.$index, c.sid, c.fbid, c.name, c.sid, c.cover, c.content);">
+
+                <span ng-if="!c.commentID">
+                  <span ng-bind="c.name" class="name"></span>
+                </span>
+
+                <span ng-if="c.commentID">
+                   <span ng-bind="c.name" class="name"></span> <span style="color: #97aad0;"> <i class="icon ion-forward"></i> </span>  <span replies="{{c.commentID}}" class="name"></span>
+                </span>
+
+                <span ng-bind="c.content" class="text"></span>
+              </div>
+            </div>
+
+<!--
+            <div class="comment">
+              <div ng-repeat="c in data.comment" class="row" on-tap="deleteComment(c.cid, data.id, $parent.$index, c.sid, c.fbid, c.name, c.sid, c.cover);">
+                <span ng-bind="c.name" class="name"></span>
+                <span ng-bind="c.content" class="text"></span>
+              </div>
+            </div>
+ -->
+    
+          </div>
+
+        </div>
+      </div>
+   
+    </div>
+
+  
+  </ion-content>
+</ion-view>

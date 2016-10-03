@@ -1,0 +1,91 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{code}}" id="mmlsDetail">
+
+<!--   <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light has-tabs-top">
+    <div class="tabs tabs-icon-top">
+      <a class="tab-item active tabAnn" on-tap="show('announcement')">
+        <i class="icon ion-ios7-home-outline"></i>
+        announcement
+      </a>
+      <a class="tab-item tabTut" on-tap="show('tutorials')">
+        <i class="icon ion-ios7-paper-outline"></i>
+        tutorials
+      </a>
+      <a class="tab-item tabLec" on-tap="show('lectures')">
+        <i class="icon ion-ios7-bookmarks-outline"></i>
+        lectures
+      </a>
+    </div>
+  </div>
+  -->
+  <ion-content>
+
+  <div class="button-bar bar-light">
+    <a class="button active tabAnn" on-tap="show('announcement')"><i class="icon ion-ios7-bell-outline positive"></i></a>
+    <a class="button tabTut" on-tap="show('tutorials')"><i class="icon ion-ios7-paper-outline positive"></i></a>
+    <a class="button tabLec" on-tap="show('lectures')"><i class="icon ion-ios7-bookmarks-outline positive"></i></a>
+  </div>
+
+  <span class="ion-loading-d loadingBar"  style="position:relative; bottom:-10px;"></span>
+  <div class="ann">
+
+    <div ng-repeat="data in announcement | limitTo:limit" class="list card">
+
+      <div class="item item-avatar" datadetectors="off"  x-apple-data-detectors="false" ng-show="data.name">
+        <h2><a on-tap="email(data.name, data.email, data.phone)" ng-bind="data.name"></a></h2>
+        <div class="subtext" ng-bind="data.date"></div>
+      </div>
+
+      <div class="item-body">
+        <div ng-bind-html="data.content"></div>
+        <br />
+
+        <button class="button button-outline button-positive attachment" on-tap="openfile(data.attachment.filelink, data.attachment.filename, $event)" ng-show="data.attachment.filename.length > 0">
+        <i class="icon positive ion-ios7-bookmarks-outline" ng-show="fileExist(data.attachment.filelink)" ></i> 
+        <i class="icon positive ion-ios7-cloud-download-outline" ng-hide="fileExist(data.attachment.filelink)"></i> 
+           &nbsp; <span ng-bind="data.attachment.filename"></span>
+        </button>
+
+      </div>
+    </div>
+
+    <button class="button button-outline button-positive loadmore" on-tap="loadmore()" ng-show="limit == 6 && announcement.length > 6" >LOAD MORE</button>
+    
+  </div>
+
+  <div class="tut" style="display:none;">
+
+    <div class="list" ng-repeat="data in tutorial">
+      <div class="item item-divider" ng-bind="data.title"></div>
+
+      <a class="item item-icon-right" on-tap="openfile(file.link, file.name, $event)" ng-repeat="file in data.file">
+      <span ng-bind="file.name"></span>
+      <i class="icon positive ion-ios7-bookmarks-outline" ng-show="fileExist(file.link)" ></i>
+      <i class="icon positive ion-ios7-cloud-download-outline" ng-hide="fileExist(file.link)"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="lec" style="display:none;">
+
+    <div class="list" ng-repeat="data in lecture">
+      <div class="item item-divider" ng-bind="data.title"></div>
+
+      <a class="item item-icon-right" on-tap="openfile(file.link, file.name, $event)" ng-repeat="file in data.file">
+        <span ng-bind="file.name"></span>
+      <i class="icon positive ion-ios7-bookmarks-outline" ng-show="fileExist(file.link)" ></i>
+      <i class="icon positive ion-ios7-cloud-download-outline" ng-hide="fileExist(file.link)"></i>
+      </a>
+    </div>
+
+  </div>
+
+
+  </ion-content>
+</ion-view>

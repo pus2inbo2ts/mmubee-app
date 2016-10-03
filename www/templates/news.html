@@ -1,0 +1,17 @@
+<ion-view view-title="MMU NEWS" id="news">
+  <ion-content>
+  <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+
+		<ion-list>
+			<ion-item ng-repeat="d in data | limitTo:limit">
+				<a href="#/tab/newsDetail/{{$index}}?title={{d.title}}" class="hashChanges">
+					<span ng-bind="d.title"></span>
+		    	<div class="mate"><span ng-bind="d.mate"></span></div>
+		    </a>
+			</ion-item>
+
+			<button class="button button-outline button-positive loadmore" on-tap="loadmore()" ng-show="limit==9 && data.length > 9">Load More</button>
+		</ion-list>
+
+  </ion-content>
+</ion-view>

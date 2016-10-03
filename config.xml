@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="my.zh.mmubee" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>MMUbee</name>
+  <description>
+        MMUbee is the most convenient app that specifically developed for every MMU student.
+  </description>
+  <author email="i@zh.my" href="http://zh.my/">
+    ZHANG HANG
+  </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+
+
+  <preference name="AutoHideSplashScreen" value="false" /><!--http://learn.ionicframework.com/formulas/splash-screen/-->
+  
+  <platform name="android">
+    <preference name="SplashScreen" value="screen" />
+    <!-- <preference name="SplashScreenDelay" value="3000" /> -->
+  </platform>
+
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+</widget>

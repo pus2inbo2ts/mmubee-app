@@ -1,0 +1,41 @@
+<ion-view view-title="CENTER" id="center">
+  <ion-content>
+
+ 
+  <div class="item item-text-wrap" style="text-align:center; font-size:14px;" ng-bind-html="text"></div>
+
+	<div class="list">
+	  <a class="item item-icon-left item-icon-right" ng-href="#/tab/centerDetail?href={{d.href}}&name={{d.name}}" ng-repeat="d in data">
+	    <i class="icon {{d.icon}}"></i>
+	    <span ng-bind-html="d.name"></span>
+	    <i class="icon" ng-bind-html="d.emojs"></i>
+	  </a>
+		<!--
+		  <a class="item item-icon-left item-icon-right" href="#">
+		    <i class="icon ion-clock"></i>
+		    Timetable
+		    <i class="icon">😳</i>
+		  </a>
+		-->
+
+		<a class="item item-icon-left" on-tap="clearDoc();">
+		  <i class="icon ion-trash-a"></i>
+		  Clear files
+		  <span class="item-note">
+		    Lecture & Tutroial
+		  </span>
+		</a>
+
+		<a class="item item-icon-left" on-tap="logout();">
+		  <i class="icon ion-log-out"></i>
+		  Log-out
+		  <span class="item-note">
+		    Clear Cache
+		  </span>
+		</a>
+
+
+	</div>
+
+  </ion-content>
+</ion-view>
